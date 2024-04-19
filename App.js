@@ -1,20 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import HomeScreen from "./src/HomeScreen";
+import DetailsScreen from "./src/DetailsScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { Drawer, PaperProvider } from "react-native-paper";
+import CustomNavigationBar from "./src/CustomNavigationBar";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import MyDrawer from "./src/MyDrawer";
+import CustomDrawerNavigation from "./src/CustomDrawerNavigation";
+import MyBottomTabs from "./src/MyBottomTabs";
 
-export default function App() {
+const stack = createStackNavigator();
+
+const App=()=>{
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider>
+      <NavigationContainer>
+        {/* <stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{
+            header: (props) => <CustomNavigationBar{...props}/>,
+          }}>
+          <stack.Screen name="Home" component={HomeScreen}/>
+          <stack.Screen name="Details" component={DetailsScreen}/>
+        </stack.Navigator> */}
+        {/* <MyDrawer/> */}
+        <MyBottomTabs/>
+      </NavigationContainer>
+    </PaperProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
